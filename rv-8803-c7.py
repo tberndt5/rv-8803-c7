@@ -18,7 +18,7 @@ def bcd_2_int(value):
 	return (value & 0x0f) + (value >> 4) * 10
 
 def int_2_bcd(value):
-	return ((value / 10) << 4) + (value % 10)
+	return ((value // 10) << 4) + (value % 10)
 
 if len(sys.argv) < ARG_COUNT:
 	print(sys.argv[ARG_EXE] + "[-I][-G]")
@@ -52,6 +52,6 @@ else:
 		day = bus.read_byte_data(address,4)
 		month = bus.read_byte_data(address,5)
 		year = bus.read_byte_data(address,6)
-		print("{:02d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}".format(bcd_2_int(year),bcd_2_int(month),bcd_2_int(day),bcd_2_int(hour),bcd_2_int(minute),bcd_2_int(second)))
+		print("{:02d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}".format(2000 + bcd_2_int(year), bcd_2_int(month), bcd_2_int(day), bcd_2_int(hour), bcd_2_int(minute), bcd_2_int(second)))
 	else:
 		print("Not a valid arguement. -I or -G")
